@@ -1,0 +1,33 @@
+{
+  "name": "mern-ts-page-turner",
+  "version": "1.0.0",
+  "description": "Ecommerce Book App",
+  "main": "app.ts",
+  "scripts": {
+    "dev": "nodemon app.ts",
+    "build": "tsc",
+    "start": "node dist/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vig-tirakapadi18/mern-ts-page-turner.git"
+  },
+  "author": "VIG",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vig-tirakapadi18/mern-ts-page-turner/issues"
+  },
+  "homepage": "https://github.com/vig-tirakapadi18/mern-ts-page-turner#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.5"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.10",
+    "ts-node": "^10.9.2"
+  }
+}
