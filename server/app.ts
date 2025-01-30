@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import "dotenv/config";
 import cors from "cors";
+import { connectToDB } from "./src/db/connectToDB";
 
 const app = express();
 app.use(express.json());
@@ -14,4 +15,5 @@ app.get("/", (req: Request, res: Response) => {
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server listening on PORT ${PORT}!`);
+  connectToDB();
 });
