@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Header: FC = (): React.JSX.Element => {
   return (
-    <header className="bg-stone-800 py-6">
+    <header className="bg-stone-800 py-6 shadow-xl z-10">
       <div className="container mx-auto flex justify-between">
         <span className="text-3xl text-white font-bold tracking-tight">
           <Link to="/" className="text-stone-300">
