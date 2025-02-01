@@ -1,6 +1,11 @@
 import { Request, Response } from "express";
 import User from "../models/user";
-import { booleanValues, errorMessages, statusCodes } from "../utils/constants";
+import {
+  booleanValues,
+  errorMessages,
+  statusCodes,
+  successMessages,
+} from "../utils/constants";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { validationResult } from "express-validator";
@@ -49,7 +54,11 @@ export const signUp = async (req: Request, res: Response) => {
         secure: process.env.NODE_ENV === "production",
         maxAge: 100 * 60 * 60 * 24,
       })
-      .sendStatus(statusCodes.code201);
+      .status(statusCodes.code201)
+      .json({
+        success: booleanValues.trueValue,
+        message: successMessages.userCreated,
+      });
   } catch (error: unknown) {
     console.error("SIGN UP", error);
     res.status(statusCodes.code500).json({
