@@ -5,29 +5,44 @@ import { footerLinks } from "../lib/footerLinks";
 
 const Footer: FC = (): React.JSX.Element => {
   return (
-    <div className="absolute bottom-0 bg-stone-700 w-screen max-h-16 py-2 flex justify-around items-center">
-      <span className="text-3xl text-white font-bold tracking-tight">
-        <Link to="/" className="text-stone-300 flex gap-1">
-          <img src={logo} alt="" width={36} />
+    <footer className="bg-stone-800 w-full py-4 px-6 text-stone-300">
+      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+        <Link
+          to="/"
+          className="flex items-center gap-2 text-white font-bold text-2xl"
+        >
+          <img
+            src={logo}
+            alt="PageTurner Logo"
+            width={40}
+            className="drop-shadow-lg"
+          />
           <span>PageTurner</span>
         </Link>
-      </span>
-      <div className="flex gap-2 group justify-center items-center ">
-        {footerLinks.map((link) => (
-          <Link
-            key={link.href}
-            className="text-stone-300 text-2xl hover:text-stone-100"
-            to={link.href}
-          >
-            {link.icon}
+
+        <div className="flex gap-4">
+          {footerLinks.map((link) => (
+            <Link
+              key={link.href}
+              to={link.href}
+              className="text-xl hover:text-white transition-colors duration-200"
+              aria-label={link.label || "Social link"}
+            >
+              {link.icon}
+            </Link>
+          ))}
+        </div>
+
+        <div className="flex gap-6 text-sm sm:text-base">
+          <Link to="/privacy-policy" className="hover:underline">
+            Privacy Policy
           </Link>
-        ))}
+          <Link to="/terms-conditions" className="hover:underline">
+            T & C
+          </Link>
+        </div>
       </div>
-      <div className="flex flex-col gap-1 font-semibold text-stone-300">
-        <span className="hover:underline cursor-pointer">Privacy Policy</span>
-        <span className="hover:underline cursor-pointer">T & C</span>
-      </div>
-    </div>
+    </footer>
   );
 };
 
