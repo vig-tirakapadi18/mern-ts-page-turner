@@ -1,13 +1,10 @@
 import { Request, Response } from "express";
 import User from "../models/user";
-import {
-  booleanValues,
-  errorMessages,
-  statusCodes,
-} from "../utils/constants";
+import { booleanValues, errorMessages, statusCodes } from "../utils/constants";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { validationResult } from "express-validator";
+import { createJwtToken } from "../utils/createJwtToken";
 
 export const signUp = async (req: Request, res: Response) => {
   const errors = validationResult(req);
@@ -44,11 +41,7 @@ export const signUp = async (req: Request, res: Response) => {
       return;
     }
 
-    const token = jwt.sign(
-      { id: user._id, email: user.email },
-      process.env.JWT_SECRET as string,
-      { expiresIn: "1d" }
-    );
+    const token = createJwtToken({ id: user._id, email: user.email });
 
     res
       .cookie("pageTurner", token, {
@@ -65,7 +58,3 @@ export const signUp = async (req: Request, res: Response) => {
     });
   }
 };
-
-export const signIn = () => {};
-
-export const signOut = () => {};

@@ -8,3 +8,10 @@ export const signUpRequestValidator = [
     min: 8,
   }),
 ];
+
+export const signInRequestValidator = [
+  check("email", "Email is required").isEmail(),
+  check("password", "Password is required & must be 8 or more characters")
+    .notEmpty()
+    .isLength({ min: 8 }),
+];
