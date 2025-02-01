@@ -1,7 +1,6 @@
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.webp";
-import { FaInstagramSquare, FaLinkedin } from "react-icons/fa";
 import { footerLinks } from "../lib/footerLinks";
 
 const Footer: FC = (): React.JSX.Element => {
