@@ -4,12 +4,15 @@ import "./index.css";
 import App from "./App.tsx";
 import { BrowserRouter } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
+import { AppContextProvider } from "./context/AppContext.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
-      <App />
-      <Toaster position="top-center" />
+      <AppContextProvider>
+        <App />
+        <Toaster position="top-center" />
+      </AppContextProvider>
     </BrowserRouter>
   </StrictMode>
 );
