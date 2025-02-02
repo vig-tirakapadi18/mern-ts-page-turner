@@ -1,9 +1,9 @@
 import React, { FC, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IUserFormData } from "../types";
 import { signUp } from "../api/apiClient";
-import toast from "react-hot-toast";
+import { useAppContext } from "../context/AppContext";
 
 const formControlClasses = "flex flex-col gap-1";
 const errorMessageClasses = "text-rose-500 text-md";
@@ -16,6 +16,8 @@ const SignUp: FC = (): React.JSX.Element => {
     password: "",
     confirmPassword: "",
   });
+  const { showToast } = useAppContext();
+  const navigate = useNavigate();
 
   const {
     register,
@@ -27,10 +29,20 @@ const SignUp: FC = (): React.JSX.Element => {
   const onSubmit = handleSubmit(async (data) => {
     const userData = await signUp(data);
     setFormData(userData);
+
+    // Toast from react-hot-toast
+    // if (userData.success) {
+    //   toast.success("Account created successfully!");
+    // } else {
+    //   toast.error("Failed to create account!");
+    // }
+
+    // Custom toast
     if (userData.success) {
-      toast.success("Account created successfully!");
+      showToast({ message: "Account created successfully!", type: "success" });
+      navigate("/");
     } else {
-      toast.error("Failed to create account!");
+      showToast({ message: "Failed to create account!", type: "error" });
     }
   });
 
