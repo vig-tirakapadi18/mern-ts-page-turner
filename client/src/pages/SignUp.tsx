@@ -1,19 +1,22 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-
-interface IUserFormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-}
+import { IUserFormData } from "../types";
+import { signUp } from "../api/apiClient";
+import toast from "react-hot-toast";
 
 const formControlClasses = "flex flex-col gap-1";
 const errorMessageClasses = "text-rose-500 text-md";
 
 const SignUp: FC = (): React.JSX.Element => {
+  const [, setFormData] = useState<IUserFormData>({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
   const {
     register,
     watch,
@@ -21,9 +24,14 @@ const SignUp: FC = (): React.JSX.Element => {
     formState: { errors },
   } = useForm<IUserFormData>();
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
-    console.log(errors);
+  const onSubmit = handleSubmit(async (data) => {
+    const userData = await signUp(data);
+    setFormData(userData);
+    if (userData.success) {
+      toast.success("Account created successfully!");
+    } else {
+      toast.error("Failed to create account!");
+    }
   });
 
   return (
