@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express";
 import "dotenv/config";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 import { connectToDB } from "./src/db/connectToDB";
 
 // Routes
@@ -16,6 +17,7 @@ app.use(
     credentials: true,
   })
 );
+app.use(cookieParser());
 
 app.get("/", (req: Request, res: Response) => {
   res.json({ message: "Welcome!" });
