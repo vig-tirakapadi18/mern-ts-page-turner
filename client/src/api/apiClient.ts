@@ -13,3 +13,12 @@ export const signUp = async (formData: IUserFormData) => {
 
   return response.data;
 };
+
+export const validateUser = async () => {
+  const response = await axiosInstance.get(
+    `${import.meta.env.VITE_API_URL}/auth/validate-token`,
+    { withCredentials: true }
+  );
+
+  return response.status !== 200;
+};
