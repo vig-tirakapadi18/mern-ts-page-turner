@@ -17,6 +17,8 @@ export const verifyToken = (
 ) => {
   const token = req.cookies.pageTurner;
 
+  console.log(req.cookies);
+
   if (!token) {
     res.status(statusCodes.code401).json({
       success: booleanValues.falseValue,
