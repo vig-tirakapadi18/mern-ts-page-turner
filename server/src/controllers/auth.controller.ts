@@ -68,3 +68,9 @@ export const signIn = async (req: Request, res: Response) => {
 };
 
 export const signOut = () => {};
+
+export const getValidUser = (req: Request, res: Response) => {
+  res
+    .status(statusCodes.code200)
+    .json({ success: booleanValues.trueValue, userId: req.userId });
+};
