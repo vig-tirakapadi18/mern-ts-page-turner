@@ -6,7 +6,6 @@ import {
   useState,
 } from "react";
 import Toast from "../components/Toast";
-import { axiosInstance } from "../api/axios/axiosInstance";
 import { validateUser } from "../api/apiClient";
 
 interface IToastMessage {
