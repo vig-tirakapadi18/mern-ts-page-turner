@@ -1,7 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./layouts/Layout";
 import Hero from "./components/Hero";
-import SignUp from "./pages/SignUp";
+import SignIn from "./pages/Auth/SignIn";
+import SignUp from "./pages/Auth/SignUp";
 
 function App() {
   return (
@@ -19,6 +20,14 @@ function App() {
         element={
           <Layout>
             <SignUp />
+          </Layout>
+        }
+      />
+      <Route
+        path="/sign-in"
+        element={
+          <Layout>
+            <SignIn />
           </Layout>
         }
       />
