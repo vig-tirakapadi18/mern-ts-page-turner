@@ -1,8 +1,8 @@
 import toast from "react-hot-toast";
-import { IUserFormData } from "../types";
+import { ISignUpFormData } from "../types/types";
 import { axiosInstance } from "./axios/axiosInstance";
 
-export const signUp = async (formData: IUserFormData) => {
+export const signUp = async (formData: ISignUpFormData) => {
   const response = await axiosInstance.post("/users/sign-up", formData, {
     withCredentials: true,
   });

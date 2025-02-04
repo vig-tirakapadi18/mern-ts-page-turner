@@ -1,15 +1,15 @@
 import React, { FC, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
-import { IUserFormData } from "../types";
-import { signUp } from "../api/apiClient";
-import { useAppContext } from "../context/AppContext";
+import { ISignUpFormData } from "../../types/types";
+import { useAppContext } from "../../context/AppContext";
+import { signUp } from "../../api/apiClient";
 
-const formControlClasses = "flex flex-col gap-1";
-const errorMessageClasses = "text-rose-500 text-md";
+export const formControlClasses = "flex flex-col gap-1";
+export const errorMessageClasses = "text-rose-500 text-md";
 
 const SignUp: FC = (): React.JSX.Element => {
-  const [, setFormData] = useState<IUserFormData>({
+  const [, setFormData] = useState<ISignUpFormData>({
     firstName: "",
     lastName: "",
     email: "",
@@ -24,7 +24,7 @@ const SignUp: FC = (): React.JSX.Element => {
     watch,
     handleSubmit,
     formState: { errors },
-  } = useForm<IUserFormData>();
+  } = useForm<ISignUpFormData>();
 
   const onSubmit = handleSubmit(async (data) => {
     const userData = await signUp(data);
