@@ -25,6 +25,14 @@ export const signIn = async (formData: ISignInFormData) => {
   return response.data.success;
 };
 
+export const signOut = async () => {
+  const response = await axiosInstance.post("/auth/sign-out", null, {
+    withCredentials: true,
+  });
+
+  return response.data.success;
+};
+
 export const validateUser = async () => {
   const response = await axiosInstance.get(
     `${import.meta.env.VITE_API_URL}/auth/validate-token`,

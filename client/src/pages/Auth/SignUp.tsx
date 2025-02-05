@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { ISignUpFormData } from "../../types/types";
 import { useAppContext } from "../../context/AppContext";
 import { signUp } from "../../api/apiClient";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/slices/authSlice";
 
 export const formControlClasses = "flex flex-col gap-1";
 export const errorMessageClasses = "text-rose-500 text-md";
@@ -18,6 +20,7 @@ const SignUp: FC = (): React.JSX.Element => {
   });
   const { showToast } = useAppContext();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -40,6 +43,7 @@ const SignUp: FC = (): React.JSX.Element => {
     // Custom toast
     if (userData.success) {
       showToast({ message: "Account created successfully!", type: "success" });
+      dispatch(login());
       navigate("/");
     } else {
       showToast({ message: "Failed to create account!", type: "error" });
