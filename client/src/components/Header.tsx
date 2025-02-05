@@ -1,12 +1,32 @@
 import React, { FC } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.webp";
 import { useAppContext } from "../context/AppContext";
+import { signOut } from "../api/apiClient";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../redux/slices/authSlice";
+import { RootState } from "../redux/store";
 
 const loggedInLinkClasses = "text-stone-300 font-bold text-xl hover:underline";
 
 const Header: FC = (): React.JSX.Element => {
-  const { isLoggedIn } = useAppContext();
+  const { showToast } = useAppContext();
+  // const [loginStatus, setLoginStatus] = useState<boolean>(isLoggedIn);
+  const isLoggedIn = useSelector<RootState>((state) => state.auth.isLoggedIn);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleSignOut = async () => {
+    const logoutStatus = await signOut();
+
+    if (logoutStatus) {
+      showToast({ message: "Logged out successfully!", type: "success" });
+      dispatch(logout());
+      navigate("/sign-in");
+    } else {
+      showToast({ message: "Failed to log out!", type: "error" });
+    }
+  };
 
   return (
     <header className="bg-stone-800 py-6 shadow-xl z-10">
@@ -25,7 +45,10 @@ const Header: FC = (): React.JSX.Element => {
             <Link to="/my-stores" className={loggedInLinkClasses}>
               My Stores
             </Link>
-            <button className="bg-stone-300 px-4 py-2 rounded-lg cursor-pointer hover:opacity-90">
+            <button
+              className="bg-stone-300 px-4 py-2 rounded-lg cursor-pointer hover:opacity-90"
+              onClick={handleSignOut}
+            >
               Sign Out
             </button>
           </div>

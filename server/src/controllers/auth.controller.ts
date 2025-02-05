@@ -67,7 +67,14 @@ export const signIn = async (req: Request, res: Response) => {
   }
 };
 
-export const signOut = () => {};
+export const signOut = (req: Request, res: Response) => {
+  res
+    .cookie("pageTurner", "", { expires: new Date(0) })
+    .json({
+      success: booleanValues.trueValue,
+      message: successMessages.userLoggedOut,
+    });
+};
 
 export const getValidUser = (req: Request, res: Response) => {
   res

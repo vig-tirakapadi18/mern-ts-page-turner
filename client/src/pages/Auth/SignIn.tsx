@@ -4,6 +4,8 @@ import { ISignInFormData } from "../../types/types";
 import { Link, useNavigate } from "react-router-dom";
 import { signIn } from "../../api/apiClient";
 import { useAppContext } from "../../context/AppContext";
+import { useDispatch } from "react-redux";
+import { login } from "../../redux/slices/authSlice";
 
 const SignIn = (): React.JSX.Element => {
   const {
@@ -12,6 +14,7 @@ const SignIn = (): React.JSX.Element => {
     handleSubmit,
   } = useForm<ISignInFormData>();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { showToast } = useAppContext();
 
   const onSubmit = handleSubmit(async (data) => {
@@ -20,6 +23,7 @@ const SignIn = (): React.JSX.Element => {
 
     if (loginStatus) {
       showToast({ message: "Logged in successfully!", type: "success" });
+      dispatch(login());
       navigate("/");
     } else {
       showToast({ message: "Failed to login!", type: "error" });
