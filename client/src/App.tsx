@@ -3,6 +3,7 @@ import Layout from "./layouts/Layout";
 import Hero from "./components/Hero";
 import SignIn from "./pages/Auth/SignIn";
 import SignUp from "./pages/Auth/SignUp";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
         }
       />
       <Route path="/search" element={<div>Search</div>} />
-      <Route path="*" element={<div>404: Page not found!</div>} />
+      <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
 }
