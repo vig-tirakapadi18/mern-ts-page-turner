@@ -1,5 +1,5 @@
 import toast from "react-hot-toast";
-import { ISignUpFormData } from "../types/types";
+import { ISignInFormData, ISignUpFormData } from "../types/types";
 import { axiosInstance } from "./axios/axiosInstance";
 
 export const signUp = async (formData: ISignUpFormData) => {
@@ -12,6 +12,17 @@ export const signUp = async (formData: ISignUpFormData) => {
   }
 
   return response.data;
+};
+
+export const signIn = async (formData: ISignInFormData) => {
+  const response = await axiosInstance.post("/auth/sign-in", formData, {
+    withCredentials: true,
+  });
+  if (!response.data.success) {
+    toast.error("Failed to sign in!");
+  }
+
+  return response.data.success;
 };
 
 export const validateUser = async () => {

@@ -1,78 +1,98 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { ISignInFormData } from "../../types/types";
-import { Link } from "react-router-dom";
-import { errorMessageClasses, formControlClasses } from "./SignUp";
+import { Link, useNavigate } from "react-router-dom";
+import { signIn } from "../../api/apiClient";
+import { useAppContext } from "../../context/AppContext";
 
 const SignIn = (): React.JSX.Element => {
   const {
     register,
     formState: { errors },
+    handleSubmit,
   } = useForm<ISignInFormData>();
+  const navigate = useNavigate();
+  const { showToast } = useAppContext();
 
-  const onSubmit = () => {};
+  const onSubmit = handleSubmit(async (data) => {
+    console.log("DATA", data);
+    const loginStatus = await signIn(data);
+
+    if (loginStatus) {
+      showToast({ message: "Logged in successfully!", type: "success" });
+      navigate("/");
+    } else {
+      showToast({ message: "Failed to login!", type: "error" });
+    }
+  });
 
   return (
-    <section className="flex justify-center items-center h-[100%] bg-stone-200 px-4">
+    <section className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 px-4">
       <form
         onSubmit={onSubmit}
-        className="bg-stone-100 lg:w-[30%] p-6 sm:p-8 rounded-lg shadow-xl text-stone-700"
+        className="bg-white w-full max-w-md p-8 rounded-xl shadow-2xl space-y-6"
       >
-        <h1 className="mb-4 text-3xl sm:text-4xl font-semibold text-stone-700 border-b pb-2 text-center border-stone-500">
-          Sign In
+        <h1 className="text-4xl font-bold text-center text-gray-800 mb-6">
+          Welcome Back
         </h1>
 
-        <div className="text-lg sm:text-xl space-y-3">
-          <div className="flex flex-col w-full gap-4">
-            <div className={formControlClasses}>
-              <label>Email</label>
-              <input
-                type="email"
-                className="border border-stone-400 rounded-md px-3 py-2 focus:ring focus:ring-stone-300"
-                placeholder="nobeta.doraemon@gmail.com"
-                {...register("email", { required: "Email is required!" })}
-              />
-              <span className={errorMessageClasses}>
-                {errors.email?.message}
+        <div className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Email
+            </label>
+            <input
+              type="email"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+              placeholder="Enter your email"
+              {...register("email", { required: "Email is required!" })}
+            />
+            {errors.email && (
+              <span className="text-sm text-red-500 mt-1">
+                {errors.email.message}
               </span>
-            </div>
-
-            <div className={formControlClasses}>
-              <label>Password</label>
-              <input
-                type="password"
-                className="border border-stone-400 rounded-md px-3 py-2 focus:ring focus:ring-stone-300"
-                placeholder="********"
-                {...register("password", {
-                  required: "Password is required!",
-                  minLength: {
-                    value: 8,
-                    message: "Password must be atleast 8 characters!",
-                  },
-                })}
-              />
-              <span className={errorMessageClasses}>
-                {errors.password?.message}
-              </span>
-            </div>
+            )}
           </div>
 
-          <button
-            type="submit"
-            className="bg-stone-600 w-full mt-4 sm:mt-6 font-semibold cursor-pointer py-2 rounded-md text-white hover:bg-stone-700 transition-all"
-          >
-            Sign In
-          </button>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+              placeholder="Enter your password"
+              {...register("password", {
+                required: "Password is required!",
+                minLength: {
+                  value: 8,
+                  message: "Password must be at least 8 characters!",
+                },
+              })}
+            />
+            {errors.password && (
+              <span className="text-sm text-red-500 mt-1">
+                {errors.password.message}
+              </span>
+            )}
+          </div>
+        </div>
 
-          <span className="block text-center text-base sm:text-lg mt-3">
-            Don&apos;t have an account?{" "}
-            <Link
-              to="/sign-in"
-              className="text-[dodgerblue] font-semibold hover:underline"
-            >
-              Create new account
-            </Link>
-          </span>
+        <button
+          type="submit"
+          className="w-full bg-stone-600 text-white py-2.5 rounded-lg font-semibold hover:bg-stone-700 transition-all focus:ring-2 focus:ring-stone-500 focus:ring-offset-2"
+        >
+          Sign In
+        </button>
+
+        <div className="text-center text-sm text-gray-600 mt-4">
+          Don&apos;t have an account?{" "}
+          <Link
+            to="/sign-up"
+            className="text-blue-600 font-semibold hover:underline"
+          >
+            Create new account
+          </Link>
         </div>
       </form>
     </section>
