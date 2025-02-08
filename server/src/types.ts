@@ -12,7 +12,8 @@ export interface IBook {
   name: string;
   author: string;
   publicationYear: number;
-  genres: string;
+  genre: string;
+  availableTypes: string[];
   description: string;
   pages: number;
   isbn: string;
