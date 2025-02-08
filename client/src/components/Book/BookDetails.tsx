@@ -4,7 +4,7 @@ import { IBookFormData } from "../../types/types";
 
 export const formLabelClasses =
   "flex flex-col text-lg font-semibold text-stone-600 my-4";
-const formInputClasses =
+export const formInputClasses =
   "border-b border-stone-600 bg-stone-100 rounded-md outline-none px-2 py-1";
 export const formErrorMsgClasses = "text-rose-500 text-sm mt-1 font-semibold";
 
