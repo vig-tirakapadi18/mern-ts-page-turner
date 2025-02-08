@@ -18,6 +18,7 @@ export interface IBookFormData {
   author: string;
   publicationYear: number;
   genre: string;
+  availableTypes: string[];
   description: string;
   pages: number;
   isbn: string;
