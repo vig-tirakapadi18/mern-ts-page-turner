@@ -3,11 +3,12 @@ import "dotenv/config";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import { connectToDB } from "./src/db/connectToDB";
+import { connectToCloudinary } from "./src/db/cloudinary";
 
 // Routes
 import authRoutes from "./src/routes/auth.route";
 import userRoutes from "./src/routes/user.route";
-import { connectToCloudinary } from "./src/db/cloudinary";
+import bookRoutes from "./src/routes/books.route";
 
 const app = express();
 app.use(cookieParser());
@@ -26,6 +27,7 @@ app.get("/", (req: Request, res: Response) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/books", bookRoutes);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {
