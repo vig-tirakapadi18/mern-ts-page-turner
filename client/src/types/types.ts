@@ -10,3 +10,19 @@ export interface ISignInFormData {
   email: string;
   password: string;
 }
+
+export interface IBookFormData {
+  // _id: string;
+  // userId: string;
+  name: string;
+  author: string;
+  publicationYear: number;
+  genres: string[];
+  description: string;
+  pages: number;
+  isbn: string;
+  price: number;
+  starRating: number;
+  imgUrls: FileList;
+  lastUpdated: Date;
+}

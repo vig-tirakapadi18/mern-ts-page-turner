@@ -7,7 +7,6 @@ import {
   successMessages,
 } from "../utils/constants";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 import { validationResult } from "express-validator";
 import { createJwtToken } from "../utils/createJwtToken";
 
