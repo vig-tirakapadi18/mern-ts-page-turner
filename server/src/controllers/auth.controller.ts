@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { validationResult } from "express-validator";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import User from "../models/user";
+import User from "../models/user.model";
 import {
   booleanValues,
   errorMessages,
@@ -68,12 +68,10 @@ export const signIn = async (req: Request, res: Response) => {
 };
 
 export const signOut = (req: Request, res: Response) => {
-  res
-    .cookie("pageTurner", "", { expires: new Date(0) })
-    .json({
-      success: booleanValues.trueValue,
-      message: successMessages.userLoggedOut,
-    });
+  res.cookie("pageTurner", "", { expires: new Date(0) }).json({
+    success: booleanValues.trueValue,
+    message: successMessages.userLoggedOut,
+  });
 };
 
 export const getValidUser = (req: Request, res: Response) => {

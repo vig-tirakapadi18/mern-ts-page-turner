@@ -1,20 +1,5 @@
 import { model, Schema } from "mongoose";
-
-export interface IBook {
-  _id: string;
-  userId: string;
-  name: string;
-  author: string;
-  publicationYear: number;
-  genres: string[];
-  description: string;
-  pages: number;
-  isbn: string;
-  price: number;
-  starRating: number;
-  imgUrls: string[];
-  lastUpdated: Date;
-}
+import { IBook } from "../types";
 
 const bookSchema = new Schema<IBook>(
   {
@@ -27,9 +12,9 @@ const bookSchema = new Schema<IBook>(
     pages: { type: Number, required: true },
     isbn: { type: String, unique: true },
     price: { type: Number, required: true },
-    starRating: { type: Number },
+    starRating: { type: Number, required: true, min: 1, max: 5 },
     imgUrls: { type: [String] },
-    lastUpdated: { type: Date, default: Date.now },
+    lastUpdated: { type: Date, default: new Date() },
   },
   { timestamps: true }
 );
