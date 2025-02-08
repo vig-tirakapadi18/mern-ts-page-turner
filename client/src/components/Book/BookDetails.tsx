@@ -2,11 +2,11 @@ import React from "react";
 import { useFormContext } from "react-hook-form";
 import { IBookFormData } from "../../types/types";
 
-const formLabelClasses =
+export const formLabelClasses =
   "flex flex-col text-lg font-semibold text-stone-600 my-4";
 const formInputClasses =
   "border-b border-stone-600 bg-stone-100 rounded-md outline-none px-2 py-1";
-const formErrorMsgClasses = "text-rose-500 text-sm mt-1 font-semibold";
+export const formErrorMsgClasses = "text-rose-500 text-sm mt-1 font-semibold";
 
 const ratingData = ["--Select Rating--", 1, 2, 3, 4, 5];
 
