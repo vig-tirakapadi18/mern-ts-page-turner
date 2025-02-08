@@ -4,8 +4,15 @@ import Hero from "./components/Hero";
 import SignIn from "./pages/Auth/SignIn";
 import SignUp from "./pages/Auth/SignUp";
 import PageNotFound from "./pages/PageNotFound";
+import CreateNewBook from "./pages/Book/CreateNewBook";
+import { useSelector } from "react-redux";
+import { RootState } from "./redux/store";
 
-function App() {
+const App = (): React.JSX.Element => {
+  const isLoggedIn = useSelector<RootState, boolean>(
+    (state) => state.auth.isLoggedIn
+  );
+
   return (
     <Routes>
       <Route
@@ -32,10 +39,22 @@ function App() {
           </Layout>
         }
       />
+      {isLoggedIn && (
+        <>
+          <Route
+            path="/new-book"
+            element={
+              <Layout>
+                <CreateNewBook />
+              </Layout>
+            }
+          />
+        </>
+      )}
       <Route path="/search" element={<div>Search</div>} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   );
-}
+};
 
 export default App;
