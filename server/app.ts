@@ -7,6 +7,7 @@ import { connectToDB } from "./src/db/connectToDB";
 // Routes
 import authRoutes from "./src/routes/auth.route";
 import userRoutes from "./src/routes/user.route";
+import { connectToCloudinary } from "./src/db/cloudinary";
 
 const app = express();
 app.use(cookieParser());
@@ -30,4 +31,5 @@ const PORT = process.env.PORT;
 app.listen(PORT, () => {
   console.log(`Server listening on PORT ${PORT}!`);
   connectToDB();
+  connectToCloudinary();
 });
