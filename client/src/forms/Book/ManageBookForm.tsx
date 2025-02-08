@@ -2,6 +2,7 @@ import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { IBookFormData } from "../../types/types";
 import BookDetails from "../../components/Book/BookDetails";
+import BookGenre from "../../components/Book/BookGenre";
 
 const ManageBookForm = (): React.JSX.Element => {
   const formMethods = useForm<IBookFormData>();
@@ -13,6 +14,7 @@ const ManageBookForm = (): React.JSX.Element => {
           Create New Book
         </h1>
         <BookDetails />
+        <BookGenre />
       </form>
     </FormProvider>
   );

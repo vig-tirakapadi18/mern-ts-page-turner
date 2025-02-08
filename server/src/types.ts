@@ -12,7 +12,7 @@ export interface IBook {
   name: string;
   author: string;
   publicationYear: number;
-  genres: string[];
+  genres: string;
   description: string;
   pages: number;
   isbn: string;
