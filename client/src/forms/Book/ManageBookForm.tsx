@@ -5,6 +5,7 @@ import BookDetails from "../../components/Book/BookDetails";
 import BookGenre from "../../components/Book/BookGenre";
 import AvailableBookTypes from "../../components/Book/AvailableBookTypes";
 import AdditionalInfo from "../../components/Book/AdditionalInfo";
+import ImageUpload from "../../components/Book/ImageUpload";
 
 const ManageBookForm = (): React.JSX.Element => {
   const formMethods = useForm<IBookFormData>();
@@ -19,6 +20,7 @@ const ManageBookForm = (): React.JSX.Element => {
         <BookGenre />
         <AvailableBookTypes />
         <AdditionalInfo />
+        <ImageUpload />
       </form>
     </FormProvider>
   );

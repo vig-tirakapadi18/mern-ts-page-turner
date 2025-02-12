@@ -14,5 +14,5 @@ body {
 }
 
 .error-message {
-  @apply text-rose-500 text-md;
+  @apply text-rose-500 text-base;
 }

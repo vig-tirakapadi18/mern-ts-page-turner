@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../../redux/slices/authSlice";
 
 export const formControlClasses = "flex flex-col gap-1";
-export const errorMessageClasses = "text-rose-500 text-md";
+export const errorMessageClasses = "text-rose-500 text-base";
 
 const SignUp: FC = (): React.JSX.Element => {
   const [, setFormData] = useState<ISignUpFormData>({

@@ -10,7 +10,7 @@ router.post(
   "/create-book",
   verifyToken,
   bookRequestValidator,
-  upload.array("img", 3),
+  upload.array("imgs", 3),
   createNewBook
 );
 
