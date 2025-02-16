@@ -21,6 +21,7 @@ export const successMessages = {
   bookUpdated: "Book updated successfully!",
   bookDeleted: "Book deleted successfully!",
   imageUploaded: "Image uploaded successfully!",
+  bookFetch: "Books fetched successfully!",
 };
 
 export const errorMessages = {

@@ -39,7 +39,24 @@ export const createNewBook = async (
     });
   } catch (error) {
     console.log("CREATE BOOK", error);
-    res.status(500).json({
+    res.status(statusCodes.code500).json({
+      success: booleanValues.falseValue,
+      message: errorMessages.bookNotCreated,
+    });
+  }
+};
+
+export const getAllBooks = async (req: Request, res: Response) => {
+  try {
+    const books = await Book.find({ userId: req.userId });
+    res.status(statusCodes.code200).json({
+      success: booleanValues.trueValue,
+      books,
+      message: successMessages.bookFetch,
+    });
+  } catch (error) {
+    console.log("CREATE BOOK", error);
+    res.status(statusCodes.code500).json({
       success: booleanValues.falseValue,
       message: errorMessages.bookNotCreated,
     });
