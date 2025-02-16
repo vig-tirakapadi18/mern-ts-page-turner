@@ -71,3 +71,16 @@ export const fetchBooks = async (): Promise<IApiReturnType<IBook>> => {
 
   return response.data;
 };
+
+export const fetchBookById = async (
+  bookId: string
+): Promise<IApiReturnType<IBook>> => {
+  const response = await axiosInstance.get(
+    `${import.meta.env.VITE_API_URL}/books/${bookId}`,
+    { withCredentials: true }
+  );
+
+  console.log("FETCH BOOK BY ID", response.data);
+
+  return response.data;
+};
