@@ -22,7 +22,7 @@ const BookDetails = (): React.JSX.Element => {
         <input
           type="text"
           className={formInputClasses}
-          {...register("author", { required: "Author is required!" })}
+          {...register("name", { required: "Name is required!" })}
         />
         {errors.author && (
           <span className={formErrorMsgClasses}>{errors.author.message}</span>

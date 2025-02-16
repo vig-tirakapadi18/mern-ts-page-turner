@@ -19,11 +19,11 @@ const AdditionalInfo = (): React.JSX.Element => {
         <input
           type="number"
           className={formInputClasses}
-          {...register("price", { required: "Price is required!" })}
+          {...register("pages", { required: "Number of pages is required!" })}
         />
-        {errors.price && (
+        {errors.pages && (
           <span className={`${formErrorMsgClasses} mt-1 mb-0`}>
-            {typeof errors.price?.message === "string" && errors.price?.message}
+            {typeof errors.pages?.message === "string" && errors.pages?.message}
           </span>
         )}
       </label>
@@ -40,12 +40,12 @@ const AdditionalInfo = (): React.JSX.Element => {
             },
           })}
         />
+        {errors.isbn && (
+          <span className={`${formErrorMsgClasses} mt-1 mb-0`}>
+            {typeof errors.isbn?.message === "string" && errors.isbn?.message}
+          </span>
+        )}
       </label>
-      {errors.isbn && (
-        <span className={`${formErrorMsgClasses} mt-1 mb-0`}>
-          {typeof errors.isbn?.message === "string" && errors.isbn?.message}
-        </span>
-      )}
     </section>
   );
 };

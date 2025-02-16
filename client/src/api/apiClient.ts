@@ -1,5 +1,9 @@
 import toast from "react-hot-toast";
-import { ISignInFormData, ISignUpFormData } from "../types/types";
+import {
+  IBookFormData,
+  ISignInFormData,
+  ISignUpFormData,
+} from "../types/types";
 import { axiosInstance } from "./axios/axiosInstance";
 
 export const signUp = async (formData: ISignUpFormData) => {
@@ -40,4 +44,15 @@ export const validateUser = async () => {
   );
 
   return response.status !== 200;
+};
+
+export const addNewBook = async (newBookData: IBookFormData) => {
+  const response = await axiosInstance.post(
+    `${import.meta.env.VITE_API_URL}/books/create-book`,
+    newBookData,
+    { withCredentials: true }
+  );
+
+  console.log("BOOK RESP", response.data);
+  return response.data.success;
 };
