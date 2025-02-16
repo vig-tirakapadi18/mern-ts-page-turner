@@ -7,6 +7,7 @@ import PageNotFound from "./pages/PageNotFound";
 import CreateNewBook from "./pages/Book/CreateNewBook";
 import { useSelector } from "react-redux";
 import { RootState } from "./redux/store";
+import MyBooks from "./pages/Book/MyBooks";
 
 const App = (): React.JSX.Element => {
   const isLoggedIn = useSelector<RootState, boolean>(
@@ -40,16 +41,24 @@ const App = (): React.JSX.Element => {
         }
       />
       {isLoggedIn && (
-        <>
-          <Route
-            path="/new-book"
-            element={
-              <Layout>
-                <CreateNewBook />
-              </Layout>
-            }
-          />
-        </>
+        <Route
+          path="/new-book"
+          element={
+            <Layout>
+              <CreateNewBook />
+            </Layout>
+          }
+        />
+      )}
+      {isLoggedIn && (
+        <Route
+          path="/my-books"
+          element={
+            <Layout>
+              <MyBooks />
+            </Layout>
+          }
+        />
       )}
       <Route path="/search" element={<div>Search</div>} />
       <Route path="*" element={<PageNotFound />} />
