@@ -55,7 +55,35 @@ export const getAllBooks = async (req: Request, res: Response) => {
       message: successMessages.bookFetch,
     });
   } catch (error) {
-    console.log("CREATE BOOK", error);
+    console.log("GET ALL BOOKS", error);
+    res.status(statusCodes.code500).json({
+      success: booleanValues.falseValue,
+      message: errorMessages.bookNotCreated,
+    });
+  }
+};
+
+export const getBookById = async (req: Request, res: Response) => {
+  const { bookId } = req.params;
+
+  try {
+    const book = await Book.find({ _id: bookId, userId: req.userId });
+
+    if (!book) {
+      res.status(statusCodes.code404).json({
+        success: booleanValues.falseValue,
+        message: errorMessages.bookNotFound,
+      });
+      return;
+    }
+
+    res.status(statusCodes.code200).json({
+      success: booleanValues.trueValue,
+      book,
+      message: successMessages.bookFetch,
+    });
+  } catch (error) {
+    console.log("GET BOOK BY ID", error);
     res.status(statusCodes.code500).json({
       success: booleanValues.falseValue,
       message: errorMessages.bookNotCreated,
