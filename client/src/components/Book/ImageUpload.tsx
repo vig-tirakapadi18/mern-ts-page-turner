@@ -19,7 +19,7 @@ const ImageUpload = (): React.JSX.Element => {
         multiple
         accept="image/*"
         className="w-full border border-dashed rounded-lg flex items-center justify-center bg-stone-200 py-10 px-10"
-        {...register("imgs", {
+        {...register("imgFiles", {
           validate: (imgFiles) => {
             const totalLength = imgFiles.length;
 
@@ -35,9 +35,9 @@ const ImageUpload = (): React.JSX.Element => {
           },
         })}
       />
-      {errors.imgUrls?.message && (
+      {errors.imgFiles?.message && (
         <span className={formErrorMsgClasses}>
-          {String(errors.imgUrls.message)}
+          {String(errors.imgFiles.message)}
         </span>
       )}
     </section>

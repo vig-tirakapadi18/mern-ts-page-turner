@@ -24,6 +24,6 @@ export interface IBookFormData {
   isbn: string;
   price: number;
   starRating: number;
-  imgUrls: FileList;
+  imgFiles: FileList;
   lastUpdated: Date;
 }
