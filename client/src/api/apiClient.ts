@@ -1,5 +1,7 @@
 import toast from "react-hot-toast";
 import {
+  IApiReturnType,
+  IBook,
   IBookFormData,
   ISignInFormData,
   ISignUpFormData,
@@ -18,7 +20,7 @@ export const signUp = async (formData: ISignUpFormData) => {
   return response.data;
 };
 
-export const signIn = async (formData: ISignInFormData) => {
+export const signIn = async (formData: ISignInFormData): Promise<boolean> => {
   const response = await axiosInstance.post("/auth/sign-in", formData, {
     withCredentials: true,
   });
@@ -29,7 +31,7 @@ export const signIn = async (formData: ISignInFormData) => {
   return response.data.success;
 };
 
-export const signOut = async () => {
+export const signOut = async (): Promise<boolean> => {
   const response = await axiosInstance.post("/auth/sign-out", null, {
     withCredentials: true,
   });
@@ -37,7 +39,7 @@ export const signOut = async () => {
   return response.data.success;
 };
 
-export const validateUser = async () => {
+export const validateUser = async (): Promise<boolean> => {
   const response = await axiosInstance.get(
     `${import.meta.env.VITE_API_URL}/auth/validate-token`,
     { withCredentials: true }
@@ -46,7 +48,9 @@ export const validateUser = async () => {
   return response.status !== 200;
 };
 
-export const addNewBook = async (newBookData: IBookFormData) => {
+export const addNewBook = async (
+  newBookData: IBookFormData
+): Promise<boolean> => {
   const response = await axiosInstance.post(
     `${import.meta.env.VITE_API_URL}/books/create-book`,
     newBookData,
@@ -55,4 +59,15 @@ export const addNewBook = async (newBookData: IBookFormData) => {
 
   console.log("BOOK RESP", response.data);
   return response.data.success;
+};
+
+export const fetchBooks = async (): Promise<IApiReturnType<IBook>> => {
+  const response = await axiosInstance.get(
+    `${import.meta.env.VITE_API_URL}/books`,
+    { withCredentials: true }
+  );
+
+  console.log("FETCH BOOKS", response.data);
+
+  return response.data;
 };

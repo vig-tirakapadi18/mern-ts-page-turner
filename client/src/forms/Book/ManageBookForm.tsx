@@ -23,7 +23,7 @@ const ManageBookForm = (): React.JSX.Element => {
 
     const formData = new FormData();
     formData.append("name", formDataJson.name);
-    formData.append("author", formDataJson.name);
+    formData.append("author", formDataJson.author);
     formData.append("publicationYear", formDataJson.publicationYear.toString());
     formData.append("genre", formDataJson.genre);
     formData.append("description", formDataJson.description);

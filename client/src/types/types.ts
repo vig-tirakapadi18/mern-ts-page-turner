@@ -11,9 +11,15 @@ export interface ISignInFormData {
   password: string;
 }
 
+export interface IApiReturnType<V> {
+  success: boolean;
+  message: string;
+  books?: V;
+}
+
 export interface IBookFormData {
-  // _id: string;
-  // userId: string;
+  _id: string;
+  userId: string;
   name: string;
   author: string;
   publicationYear: number;
@@ -26,4 +32,8 @@ export interface IBookFormData {
   starRating: number;
   imgFiles: FileList;
   lastUpdated: Date;
+}
+
+export interface IBook extends Omit<IBookFormData, "imgFiles"> {
+  imgUrls: string[];
 }
